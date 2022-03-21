@@ -24,10 +24,10 @@
 
 .genre-chip:hover {
   color: white;
-  background: black;
+  background: linear-gradient(to left, coral, purple);
 }
 
 .clicked {
   color: white;
-  background: black;
+  background: linear-gradient(to left, coral, purple);
 }

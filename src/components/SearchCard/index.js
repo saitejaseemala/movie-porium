@@ -85,7 +85,8 @@ function SearchCard(props) {
                       <p className="search-release-date">
                         {result.release_date
                           ? fetchDate(result.release_date)
-                          : fetchDate(result.first_air_date)}
+                          : result.first_air_date &&
+                            fetchDate(result.first_air_date)}
                       </p>
                       <div className="overview-section">{result.overview}</div>
                     </>

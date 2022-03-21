@@ -49,26 +49,40 @@ function Details({ details, trailer, type }) {
           Go back
         </button>
         <h1 className="title">{details.title || details.original_title}</h1>
-        <p className="release-date">Release Date: {details.release_date}</p>
-        {type === "movie" ? (
-          <p className="run-time">Run time: {runTime}</p>
-        ) : (
-          <p className="run-time">No of Seasons: {details.number_of_seasons}</p>
+        {details.release_date && (
+          <p className="release-date">Release Date: {details.release_date}</p>
         )}
-        <p className="show-rating">Rating: {details.vote_average}</p>
-        <div className="genres">Genre: {renderGenres()}</div>
-        <p className="overview">{details.overview}</p>
-        <a
-          href={`https://www.youtube.com/watch?v=${trailer}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <button className="trailer-btn">
-            {" "}
-            <PlayArrowIcon className="play-icon" />
-            Play Trailer
-          </button>
-        </a>
+        {type === "movie"
+          ? details.run_time && <p className="run-time">Run time: {runTime}</p>
+          : details.number_of_seasons && (
+              <p className="run-time">
+                No of Seasons: {details.number_of_seasons}
+              </p>
+            )}
+        {details.vote_average != 0 && (
+          <p className="show-rating">Rating: {details.vote_average}</p>
+        )}
+        {details.genres && details.genres.length > 0 && (
+          <div className="genres">Genre: {renderGenres()}</div>
+        )}
+        {details.overview ? (
+          <p className="overview">{details.overview}</p>
+        ) : (
+          <h2 className="overview">Details Not Found</h2>
+        )}
+        {trailer && (
+          <a
+            href={`https://www.youtube.com/watch?v=${trailer}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="trailer-btn">
+              {" "}
+              <PlayArrowIcon className="play-icon" />
+              Play Trailer
+            </button>
+          </a>
+        )}
       </div>
     </div>
   );

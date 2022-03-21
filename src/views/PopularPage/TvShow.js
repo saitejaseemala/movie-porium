@@ -4,7 +4,7 @@ import { fetchPopularTvSeries } from "../../store/actions/fetchPopularAction";
 import { fetchTvGenres } from "../../store/actions/fetchGenresAction";
 import { fetchTvDetailsOnGenre } from "../../store/actions/fetchDetailsOnGenre";
 import Row from "../../components/Row";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import "./PopularPage.css";
 import Chip from "../../components/Chip";
 import Pagination from "../../components/Pagination";
@@ -13,12 +13,21 @@ import { CircularProgress } from "@mui/material";
 function TvShow(props) {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
-  const [activePage, setActivePage] = useState(1);
-  const [pageChanger, setPageChanger] = useState(0);
+  const [queryParam] = useSearchParams();
+  const pageParam = queryParam.get("page");
+  const navigate = useNavigate();
+  const [activePage, setActivePage] = useState(parseInt(pageParam));
+  const [pageChanger, setPageChanger] = useState(() => {
+    if (pageParam % 10 === 0) {
+      return (parseInt(parseInt(pageParam) / 10) - 1) * 10;
+    } else {
+      return parseInt(parseInt(pageParam) / 10) * 10;
+    }
+  });
   const [genreToggle, setGenreToggle] = useState(false);
-  const [genreId, setGenreId] = useState("");
+  const [genreId, setGenreId] = useState([]);
   useEffect(() => {
-    props.fetchPopularTvSeries(1);
+    props.fetchPopularTvSeries(pageParam);
     props.fetchTvGenres();
   }, []);
 
@@ -37,7 +46,7 @@ function TvShow(props) {
     const pageNo = val;
     setActivePage(pageNo);
     if (genreToggle) {
-      props.fetchTvDetailsOnGenre(genreId, pageNo);
+      props.fetchTvDetailsOnGenre(genreId.toString(), pageNo);
     } else {
       props.fetchPopularTvSeries(pageNo);
     }
@@ -56,11 +65,19 @@ function TvShow(props) {
   };
 
   const onGenreSelection = (genreIds) => {
-    genreIds && props.fetchTvDetailsOnGenre(genreIds, 1);
+    if (genreIds) {
+      props.fetchTvDetailsOnGenre(genreIds, 1);
+    } else {
+      props.fetchPopularTvSeries(1);
+      setGenreToggle(false);
+    }
     props.tvResultsOnGenre.results &&
       setResults(props.tvResultsOnGenre.results);
     setGenreToggle(true);
-    setGenreId(genreIds);
+    setGenreId(genreIds.split(",").map(Number));
+    navigate("/popular-tv?page=1");
+    setActivePage(1);
+    setPageChanger(0);
   };
 
   return !props.loading ? (
@@ -78,7 +95,11 @@ function TvShow(props) {
             Search
           </Link>
         </div>
-        <Chip genres={props.tvGenres} onClickHandler={onGenreSelection} />
+        <Chip
+          genres={props.tvGenres}
+          onClickHandler={onGenreSelection}
+          genreArray={genreId}
+        />
       </div>
       <div className="tv-show-section">
         {results.length > 0 ? (
@@ -96,6 +117,7 @@ function TvShow(props) {
                 onPageChange={onPageChangeHandler}
                 decrementHandler={decrementHandler}
                 incrementHandler={incrementHandler}
+                type={"popular-tv"}
               />
             )}
             {!genreToggle && props.popularTvSeries.total_pages > 1 && (
@@ -106,6 +128,7 @@ function TvShow(props) {
                 onPageChange={onPageChangeHandler}
                 decrementHandler={decrementHandler}
                 incrementHandler={incrementHandler}
+                type={"popular-tv"}
               />
             )}
           </div>

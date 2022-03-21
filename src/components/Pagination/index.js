@@ -1,5 +1,6 @@
 import React from "react";
 import "./Pagination.css";
+import { Link } from "react-router-dom";
 
 function Pagination({
   totalPages,
@@ -8,11 +9,16 @@ function Pagination({
   onPageChange,
   decrementHandler,
   incrementHandler,
+  type,
 }) {
   const pageNumbers = [];
   if (totalPages > 10) {
     for (let i = pageChanger + 1; i < pageChanger + 11; i++) {
-      pageNumbers.push(i);
+      if (i <= totalPages) {
+        pageNumbers.push(i);
+      } else {
+        break;
+      }
     }
   } else {
     for (let i = 1; i < totalPages + 1; i++) {
@@ -24,9 +30,9 @@ function Pagination({
       <ul className="pagination">
         {totalPages > 10 && pageChanger > 0 && (
           <li className="page-item" onClick={(e) => decrementHandler(e)}>
-            <a href="#" className="page-prev">
+            <Link to={`/${type}?page=${pageChanger - 9}`} className="page-prev">
               &laquo;
-            </a>
+            </Link>
           </li>
         )}
         {totalPages &&
@@ -38,21 +44,24 @@ function Pagination({
                   activePage === pageNum ? "active" : ""
                 }`}
               >
-                <a
-                  href="#"
+                <Link
+                  to={`/${type}?page=${pageNum}`}
                   className="page-link"
                   onClick={() => onPageChange(pageNum)}
                 >
                   {pageNum}
-                </a>
+                </Link>
               </li>
             );
           })}
-        {totalPages > 10 && pageChanger < totalPages && (
+        {totalPages > 10 && pageChanger + 10 < totalPages && (
           <li className="page-item" onClick={(e) => incrementHandler(e)}>
-            <a href="#" className="page-next">
+            <Link
+              to={`/${type}?page=${pageChanger + 11}`}
+              className="page-next"
+            >
               &raquo;
-            </a>
+            </Link>
           </li>
         )}
       </ul>

@@ -5,25 +5,35 @@ import { fetchMovieGenres } from "../../store/actions/fetchGenresAction";
 import Row from "../../components/Row";
 import "./PopularPage.css";
 import Chip from "../../components/Chip";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import Pagination from "../../components/Pagination";
 import { fetchMovieDetailsOnGenre } from "../../store/actions/fetchDetailsOnGenre";
 import { CircularProgress } from "@mui/material";
 
 function Movie(props) {
   const [search, setSearch] = useState("");
+  const [queryParam] = useSearchParams();
+  const pageParam = queryParam.get("page");
   const [results, setResults] = useState([]);
-  const [activePage, setActivePage] = useState(1);
-  const [pageChanger, setPageChanger] = useState(0);
+  const navigate = useNavigate();
+  const [activePage, setActivePage] = useState(parseInt(pageParam));
+  const [pageChanger, setPageChanger] = useState(() => {
+    if (pageParam % 10 === 0) {
+      return (parseInt(parseInt(pageParam) / 10) - 1) * 10;
+    } else {
+      return parseInt(parseInt(pageParam) / 10) * 10;
+    }
+  });
   const [genreToggle, setGenreToggle] = useState(false);
-  const [genreId, setGenreId] = useState("");
+  const [genreId, setGenreId] = useState([]);
   useEffect(() => {
-    props.fetchPopularMovies(1);
+    props.fetchPopularMovies(pageParam);
     props.fetchMovieGenres();
   }, []);
 
   useEffect(() => {
     props.popularMovies.results && setResults(props.popularMovies.results);
+    console.log(activePage);
   }, [props.popularMovies]);
 
   useEffect(() => {
@@ -37,7 +47,7 @@ function Movie(props) {
     const pageNo = val;
     setActivePage(pageNo);
     if (genreToggle) {
-      props.fetchMovieOnGenre(genreId, pageNo);
+      props.fetchMovieOnGenre(genreId.toString(), pageNo);
     } else {
       props.fetchPopularMovies(pageNo);
     }
@@ -56,12 +66,21 @@ function Movie(props) {
   };
 
   const onGenreSelection = (genreIds) => {
-    genreIds && props.fetchMovieOnGenre(genreIds, 1);
+    if (genreIds) {
+      props.fetchMovieOnGenre(genreIds, 1);
+    } else {
+      props.fetchPopularMovies(1);
+      setGenreToggle(false);
+    }
     props.movieResultsOnGenre.results &&
       setResults(props.movieResultsOnGenre.results);
     setGenreToggle(true);
-    setGenreId(genreIds);
+    setGenreId(genreIds.split(",").map(Number));
+    navigate("/popular-movies?page=1");
+    setActivePage(1);
+    setPageChanger(0);
   };
+
   return !props.loading ? (
     <div className="popular">
       <div className="genre-section">
@@ -78,7 +97,11 @@ function Movie(props) {
           </Link>
         </div>
         <div>
-          <Chip genres={props.movieGenres} onClickHandler={onGenreSelection} />
+          <Chip
+            genres={props.movieGenres}
+            onClickHandler={onGenreSelection}
+            genreArray={genreId}
+          />
         </div>
       </div>
       <div className="movie-section">
@@ -97,6 +120,7 @@ function Movie(props) {
                 onPageChange={onPageChangeHandler}
                 decrementHandler={decrementHandler}
                 incrementHandler={incrementHandler}
+                type={"popular-movies"}
               />
             )}
             {!genreToggle && props.popularMovies.total_pages > 1 && (
@@ -107,6 +131,7 @@ function Movie(props) {
                 onPageChange={onPageChangeHandler}
                 decrementHandler={decrementHandler}
                 incrementHandler={incrementHandler}
+                type={"popular-movies"}
               />
             )}
           </div>

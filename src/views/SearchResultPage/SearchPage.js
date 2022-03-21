@@ -8,7 +8,12 @@ import {
   fetchTvSeriesOnSearch,
 } from "../../store/actions/fetchShowsOnSearch";
 import fetchPeopleOnSearch from "../../store/actions/fetchPeopleOnSearch";
-import { useParams } from "react-router-dom";
+import {
+  Link,
+  useParams,
+  useSearchParams,
+  useNavigate,
+} from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import "./SearchPage.css";
 
@@ -16,41 +21,59 @@ function SearchPage(props) {
   const { searchTerm } = useParams();
   const [results, setResults] = useState([]);
   const [allToggle, setAllToggle] = useState(true);
+  const [queryParam] = useSearchParams();
+  const pageParam = queryParam.get("page");
+  const navigate = useNavigate();
   const [movieToggle, setMovieToggle] = useState(false);
   const [tvToggle, setTvToggle] = useState(false);
   const [peopleToggle, setPeopleToggle] = useState(false);
-  const [activePage, setActivePage] = useState(1);
-  const [pageChanger, setPageChanger] = useState(0);
+  const [activePage, setActivePage] = useState(parseInt(pageParam));
+  const [pageChanger, setPageChanger] = useState(() => {
+    if (pageParam % 10 === 0) {
+      return (parseInt(parseInt(pageParam) / 10) - 1) * 10;
+    } else {
+      return parseInt(parseInt(pageParam) / 10) * 10;
+    }
+  });
+  const [totalPages, setTotalPages] = useState([]);
   useEffect(() => {
-    props.fetchSearchResults(searchTerm, 1);
-    props.fetchMoviesOnSearch(searchTerm, 1);
-    props.fetchTvSeriesOnSearch(searchTerm, 1);
-    props.fetchPeopleOnSearch(searchTerm, 1);
+    props.fetchSearchResults(searchTerm, pageParam);
+    props.fetchMoviesOnSearch(searchTerm, pageParam);
+    props.fetchTvSeriesOnSearch(searchTerm, pageParam);
+    props.fetchPeopleOnSearch(searchTerm, pageParam);
   }, []);
 
   useEffect(() => {
     if (allToggle) {
       props.searchResults && setResults(props.searchResults.results);
+      props.searchResults.total_pages &&
+        setTotalPages(props.searchResults.total_pages);
     }
-  }, [props.searchResults]);
+  }, [props.searchResults, allToggle]);
 
   useEffect(() => {
     if (movieToggle) {
       props.moviesOnSearch && setResults(props.moviesOnSearch.results);
+      props.moviesOnSearch.total_pages &&
+        setTotalPages(props.moviesOnSearch.total_pages);
     }
-  }, [props.moviesOnSearch]);
+  }, [props.moviesOnSearch, movieToggle]);
 
   useEffect(() => {
     if (tvToggle) {
       props.tvSeriesOnSearch && setResults(props.tvSeriesOnSearch.results);
+      props.tvSeriesOnSearch.total_pages &&
+        setTotalPages(props.tvSeriesOnSearch.total_pages);
     }
-  }, [props.tvSeriesOnSearch]);
+  }, [props.tvSeriesOnSearch, tvToggle]);
 
   useEffect(() => {
     if (peopleToggle) {
       props.peopleOnSearch && setResults(props.peopleOnSearch.results);
+      props.peopleOnSearch.total_pages &&
+        setTotalPages(props.peopleOnSearch.total_pages);
     }
-  }, [props.peopleOnSearch]);
+  }, [props.peopleOnSearch, peopleToggle]);
 
   const onPageChangeHandler = (val) => {
     const pageNo = val;
@@ -82,7 +105,8 @@ function SearchPage(props) {
   };
 
   const allClickHandler = () => {
-    props.searchResults && setResults(props.searchResults.results);
+    navigate(`/search/${searchTerm}/?page=1`);
+    props.fetchSearchResults(searchTerm, 1);
     setAllToggle(true);
     setMovieToggle(false);
     setTvToggle(false);
@@ -92,7 +116,8 @@ function SearchPage(props) {
   };
 
   const movieClickHandler = () => {
-    props.moviesOnSearch && setResults(props.moviesOnSearch.results);
+    navigate(`/search/${searchTerm}/?page=1`);
+    props.fetchMoviesOnSearch(searchTerm, 1);
     setAllToggle(false);
     setMovieToggle(true);
     setTvToggle(false);
@@ -102,7 +127,8 @@ function SearchPage(props) {
   };
 
   const tvClickHandler = () => {
-    props.tvSeriesOnSearch && setResults(props.tvSeriesOnSearch.results);
+    navigate(`/search/${searchTerm}/?page=1`);
+    props.fetchTvSeriesOnSearch(searchTerm, 1);
     setAllToggle(false);
     setMovieToggle(false);
     setTvToggle(true);
@@ -112,7 +138,8 @@ function SearchPage(props) {
   };
 
   const peopleClickHandler = () => {
-    props.peopleOnSearch && setResults(props.peopleOnSearch.results);
+    navigate(`/search/${searchTerm}/?page=1`);
+    props.fetchPeopleOnSearch(searchTerm, 1);
     setAllToggle(false);
     setMovieToggle(false);
     setTvToggle(false);
@@ -131,9 +158,9 @@ function SearchPage(props) {
           className={`search-p ${allToggle ? "selected" : ""}`}
           onClick={allClickHandler}
         >
-          <a id="all" title="all">
+          <Link to={`/search/${searchTerm}/?page=1`} id="all" title="all">
             All
-          </a>
+          </Link>
           <span className="results all-results">
             {props.searchResults.total_results}
           </span>
@@ -142,9 +169,9 @@ function SearchPage(props) {
           className={`search-p ${movieToggle ? "selected" : ""}`}
           onClick={movieClickHandler}
         >
-          <a id="movie" title="movies">
+          <Link to={`/search/${searchTerm}/?page=1`} id="movie" title="movies">
             Movies
-          </a>
+          </Link>
           <span className="results movie-results">
             {props.moviesOnSearch.total_results}
           </span>
@@ -153,9 +180,13 @@ function SearchPage(props) {
           className={`search-p ${tvToggle ? "selected" : ""}`}
           onClick={tvClickHandler}
         >
-          <a id="tvshows" title="tvshows">
+          <Link
+            to={`/search/${searchTerm}/?page=1`}
+            id="tvshows"
+            title="tvshows"
+          >
             Tv Shows
-          </a>
+          </Link>
           <span className="results tv-results">
             {props.tvSeriesOnSearch.total_results}
           </span>
@@ -164,9 +195,9 @@ function SearchPage(props) {
           className={`search-p ${peopleToggle ? "selected" : ""}`}
           onClick={peopleClickHandler}
         >
-          <a id="people" title="people">
+          <Link to={`/search/${searchTerm}/?page=1`} id="people" title="people">
             People
-          </a>
+          </Link>
           <span className="results people-results">
             {props.peopleOnSearch.total_results}
           </span>
@@ -182,12 +213,13 @@ function SearchPage(props) {
         )}
         {props.searchResults.total_pages > 1 && (
           <Pagination
-            totalPages={props.searchResults.total_pages}
+            totalPages={totalPages}
             pageChanger={pageChanger}
             activePage={activePage}
             onPageChange={onPageChangeHandler}
             decrementHandler={decrementHandler}
             incrementHandler={incrementHandler}
+            type={`search/${searchTerm}`}
           />
         )}
       </div>

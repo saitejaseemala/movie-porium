@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { fetchTopRatedMovies } from "../../store/actions/fetchTopRatedAction";
 import { fetchMovieGenres } from "../../store/actions/fetchGenresAction";
 import Row from "../../components/Row";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import "./TopRated.css";
 import Chip from "../../components/Chip";
 import Pagination from "../../components/Pagination";
@@ -13,12 +13,22 @@ import { CircularProgress } from "@mui/material";
 function Movie(props) {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
-  const [activePage, setActivePage] = useState(1);
-  const [pageChanger, setPageChanger] = useState(0);
+  const [queryParam] = useSearchParams();
+  const pageParam = queryParam.get("page");
+  const navigate = useNavigate();
+  const [activePage, setActivePage] = useState(parseInt(pageParam));
+  const [pageChanger, setPageChanger] = useState(() => {
+    if (pageParam % 10 === 0) {
+      return (parseInt(parseInt(pageParam) / 10) - 1) * 10;
+    } else {
+      return parseInt(parseInt(pageParam) / 10) * 10;
+    }
+  });
   const [genreToggle, setGenreToggle] = useState(false);
-  const [genreId, setGenreId] = useState("");
+  const [genreId, setGenreId] = useState([]);
   useEffect(() => {
-    props.fetchTopRatedMovies(1);
+    props.fetchTopRatedMovies(pageParam);
+    console.log(activePage);
     props.fetchMovieGenres();
   }, []);
   useEffect(() => {
@@ -36,7 +46,7 @@ function Movie(props) {
     const pageNo = val;
     setActivePage(pageNo);
     if (genreToggle) {
-      props.fetchMovieOnGenre(genreId, pageNo);
+      props.fetchMovieOnGenre(genreId.toString(), pageNo);
     } else {
       props.fetchTopRatedMovies(pageNo);
     }
@@ -55,11 +65,19 @@ function Movie(props) {
   };
 
   const onGenreSelection = (genreIds) => {
-    genreIds && props.fetchMovieOnGenre(genreIds, 1);
+    if (genreIds) {
+      props.fetchMovieOnGenre(genreIds, 1);
+    } else {
+      props.fetchTopRatedMovies(1);
+      setGenreToggle(false);
+    }
     props.movieResultsOnGenre.results &&
       setResults(props.movieResultsOnGenre.results);
     setGenreToggle(true);
-    setGenreId(genreIds);
+    setGenreId(genreIds.split(",").map(Number));
+    navigate("/top-movies?page=1");
+    setActivePage(1);
+    setPageChanger(0);
   };
 
   return !props.loading ? (
@@ -77,7 +95,11 @@ function Movie(props) {
             Search
           </Link>
         </div>
-        <Chip genres={props.movieGenres} onClickHandler={onGenreSelection} />
+        <Chip
+          genres={props.movieGenres}
+          onClickHandler={onGenreSelection}
+          genreArray={genreId}
+        />
       </div>
       <div className="top-rated-section">
         {results.length > 0 ? (
@@ -95,6 +117,7 @@ function Movie(props) {
                 onPageChange={onPageChangeHandler}
                 decrementHandler={decrementHandler}
                 incrementHandler={incrementHandler}
+                type={"top-movies"}
               />
             )}
             {!genreToggle && props.topRatedMovies.total_pages > 1 && (
@@ -105,6 +128,7 @@ function Movie(props) {
                 onPageChange={onPageChangeHandler}
                 decrementHandler={decrementHandler}
                 incrementHandler={incrementHandler}
+                type={"top-movies"}
               />
             )}
           </div>

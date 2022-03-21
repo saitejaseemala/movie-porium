@@ -5,13 +5,22 @@ import { connect } from "react-redux";
 import { fetchPopularPeople } from "../../store/actions/fetchPeopleAction";
 import Pagination from "../../components/Pagination";
 import { CircularProgress } from "@mui/material";
+import { useSearchParams } from "react-router-dom";
 
 function PopularPeople(props) {
   const [results, setResults] = useState([]);
-  const [activePage, setActivePage] = useState(1);
-  const [pageChanger, setPageChanger] = useState(0);
+  const [queryParam] = useSearchParams();
+  const pageParam = queryParam.get("page");
+  const [activePage, setActivePage] = useState(parseInt(pageParam));
+  const [pageChanger, setPageChanger] = useState(() => {
+    if (pageParam % 10 === 0) {
+      return (parseInt(parseInt(pageParam) / 10) - 1) * 10;
+    } else {
+      return parseInt(parseInt(pageParam) / 10) * 10;
+    }
+  });
   useEffect(() => {
-    props.fetchPopularPeople(1);
+    props.fetchPopularPeople(pageParam);
   }, []);
 
   useEffect(() => {
@@ -50,6 +59,7 @@ function PopularPeople(props) {
               onPageChange={onPageChangeHandler}
               decrementHandler={decrementHandler}
               incrementHandler={incrementHandler}
+              type={"popular-people"}
             />
           )}
         </div>

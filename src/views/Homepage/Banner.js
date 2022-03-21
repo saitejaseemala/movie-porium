@@ -24,7 +24,7 @@ function Banner(props) {
 
   const onSearchHandler = () => {
     const searchTerm = inputRef.current.value;
-    const path = "search/" + searchTerm;
+    const path = "search/" + searchTerm + "?page=1";
     navigate(path);
   };
 

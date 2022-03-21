@@ -1,7 +1,7 @@
 import movieApi from "../../api/movieApi";
 import { errorHandler, loadingHandler, getUpcoming } from "./index";
 
-export const fetchUpcomingMovies = () => {
+export const fetchUpcomingMovies = (page) => {
   return async (dispatch) => {
     dispatch(loadingHandler());
     await movieApi
@@ -9,7 +9,7 @@ export const fetchUpcomingMovies = () => {
         params: {
           api_key: process.env.REACT_APP_API_KEY,
           language: "en-US",
-          page: 1,
+          page: page,
         },
       })
       .then((response) => {
