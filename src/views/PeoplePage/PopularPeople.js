@@ -49,21 +49,19 @@ function PopularPeople(props) {
     <div className="popular-content">
       <h2>Popular People</h2>
       <Card people={results} />
-      {props.people && (
-        <div className="people-pagination">
-          {props.people.total_pages > 1 && (
-            <Pagination
-              totalPages={props.people.total_pages}
-              pageChanger={pageChanger}
-              activePage={activePage}
-              onPageChange={onPageChangeHandler}
-              decrementHandler={decrementHandler}
-              incrementHandler={incrementHandler}
-              type={"popular-people"}
-            />
-          )}
-        </div>
-      )}
+      <div className="people-pagination">
+        {props.people.total_pages > 1 && (
+          <Pagination
+            totalPages={props.people.total_pages}
+            pageChanger={pageChanger}
+            activePage={activePage}
+            onPageChange={onPageChangeHandler}
+            decrementHandler={decrementHandler}
+            incrementHandler={incrementHandler}
+            type={"popular-people"}
+          />
+        )}
+      </div>
     </div>
   ) : (
     <CircularProgress className="spinner" />

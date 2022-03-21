@@ -139,7 +139,7 @@ function Header() {
             </li>
             <li className="nav-link">
               <Link
-                to="popular-people"
+                to="popular-people?page=1"
                 onClick={(e) => {
                   e.stopPropagation();
                   setMenu(true);
