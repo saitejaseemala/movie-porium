@@ -1,0 +1,78 @@
+.banner {
+  width: 100%;
+}
+
+.banner-img {
+  object-fit: cover;
+  color: white;
+  min-height: 400px;
+  max-height: 500px;
+  font-family: "Fredoka", sans-serif;
+}
+
+.banner-content {
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.banner-content h2 {
+  font-size: 2rem;
+}
+
+.banner-content p {
+  font-size: 1.5rem;
+}
+
+.banner-content input {
+  width: 100%;
+  margin-top: 40px;
+  outline: none;
+  padding: 14px;
+  font-size: 1.25rem;
+  border: none;
+  color: rgba(0, 0, 0, 0.5);
+  border-radius: 30px;
+}
+
+.banner-gradient {
+  height: 5rem;
+}
+
+.search-bx {
+  position: relative;
+  width: 90%;
+}
+
+.btn {
+  outline: none;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  background: linear-gradient(to left, coral, purple);
+  cursor: pointer;
+  padding: 1rem 2rem;
+  position: absolute;
+  top: 40px;
+  font-size: 1rem;
+  left: 95%;
+}
+
+.search-bx input {
+  text-indent: 1rem;
+}
+
+.popular-container .movies {
+  margin-top: 5rem;
+}
+
+.popular-container .title-header {
+  position: relative;
+  bottom: 0;
+}
+
+.top .title-header {
+  position: relative;
+  bottom: 0;
+}

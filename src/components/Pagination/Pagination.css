@@ -1,0 +1,35 @@
+.pagination li {
+  cursor: pointer;
+  list-style: none;
+}
+
+.pagination {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 92%;
+  border-collapse: collapse;
+}
+
+.pagination li a {
+  color: black;
+  background-color: whitesmoke;
+  padding: 10px 20px;
+  border: 0.5px solid grey;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+
+a.page-prev {
+  border-left: 1px solid grey !important;
+}
+
+a.page-next {
+  border-right: 1px solid grey !important;
+}
+
+li.active a {
+  background-color: dodgerblue !important;
+  color: white !important;
+}

@@ -1,0 +1,35 @@
+.card-image {
+  object-fit: cover;
+  object-position: center center;
+  max-height: 280px;
+  width: 235px;
+  box-sizing: border-box;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+.card-section {
+  padding-top: 3rem;
+  padding-left: 3rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  row-gap: 5rem;
+}
+
+.meta {
+  background: white;
+  padding-top: 5px;
+}
+
+.meta .name a {
+  list-style: none;
+  text-decoration: none;
+  color: #333;
+  padding: 5px;
+  font-weight: 800 !important;
+}
+
+@media (max-width: 650px) {
+  .card-section {
+    grid-template-columns: 1fr 1fr;
+  }
+}

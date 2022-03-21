@@ -1,0 +1,33 @@
+.genre-card {
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+  border: 1px solid #e3e3e3;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.genre-title {
+  padding: 1rem 0;
+  border-bottom: 1px solid #e3e3e3;
+  text-align: center;
+}
+
+.genre-chip {
+  margin-left: 0.8rem;
+  margin-top: 1rem;
+  padding: 10px 1.1rem;
+  border: 1px solid #e3e3e3;
+  display: inline-block;
+  border-radius: 35px;
+  cursor: pointer;
+  background: #fff;
+}
+
+.genre-chip:hover {
+  color: white;
+  background: black;
+}
+
+.clicked {
+  color: white;
+  background: black;
+}

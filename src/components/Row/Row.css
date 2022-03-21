@@ -1,0 +1,84 @@
+.rating {
+  background: black;
+  border-radius: 30px;
+}
+
+.title-header {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.4rem;
+}
+
+.row {
+  padding-left: 3rem;
+}
+
+.row-section {
+  padding-top: 20px;
+  padding-left: 20px;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  cursor: default;
+}
+
+.row-section::-webkit-scrollbar {
+  display: none;
+}
+
+.poster {
+  object-fit: contain;
+  max-height: 220px;
+  border-radius: 1rem;
+  padding: 5px;
+  box-shadow: 0, 0, 10px, rgba(0, 0, 0, 0.5);
+  transition: transform 450ms;
+}
+
+.no-image-poster {
+  object-fit: cover;
+  height: 220px;
+  max-width: 156px;
+  border-radius: 1rem;
+  padding: 5px;
+  box-shadow: 0, 0, 10px, rgba(0, 0, 0, 0.5);
+  transition: transform 450ms;
+}
+
+.poster-card {
+  display: inline-block;
+}
+
+.poster:hover {
+  transform: scale(1.08);
+}
+
+::placeholder {
+  text-overflow: ellipsis;
+}
+
+.poster-title {
+  width: 120px;
+  margin-top: 10px;
+  line-height: 1;
+}
+
+.poster-title a {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: black;
+  font-family: "Fredoka", sans-serif;
+  font-weight: bold;
+}
+
+.poster-content {
+  display: flex;
+  margin-left: 10px;
+  position: relative;
+  bottom: 40px;
+}
+
+.rating-placer {
+  position: relative;
+  bottom: 40px;
+}
