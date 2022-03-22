@@ -8,7 +8,7 @@ import "./UpcomingMovies.css";
 import Chip from "../../components/Chip";
 import Pagination from "../../components/Pagination";
 import { fetchMovieDetailsOnGenre } from "../../store/actions/fetchDetailsOnGenre";
-import { CircularProgress } from "@mui/material";
+import { LinearProgress } from "@mui/material";
 
 function UpcomingMovies(props) {
   const [search, setSearch] = useState("");
@@ -142,7 +142,7 @@ function UpcomingMovies(props) {
       </div>
     </div>
   ) : (
-    <CircularProgress className="spinner" />
+    <LinearProgress />
   );
 }
 

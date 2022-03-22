@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { fetchPeopleInfo } from "../../store/actions/fetchPeopleAction";
 import { useParams } from "react-router-dom";
 import Person from "../../components/Details/Person";
+import { LinearProgress } from "@mui/material";
 
 function CelebrityDetail(props) {
   const { personId } = useParams();
@@ -10,16 +11,19 @@ function CelebrityDetail(props) {
     window.scrollTo({ top: 0, behavior: "smooth" });
     props.fetchPeopleInfo(personId);
   }, []);
-  return (
+  return !props.loading ? (
     <div className="person-container">
       <Person personInfo={props.personInfo} />
     </div>
+  ) : (
+    <LinearProgress />
   );
 }
 
 const mapStateToProps = (state) => {
   return {
     personInfo: state.personInfo,
+    loading: state.loading,
   };
 };
 

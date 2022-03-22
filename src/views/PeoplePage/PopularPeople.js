@@ -4,7 +4,7 @@ import "./PopularPeople.css";
 import { connect } from "react-redux";
 import { fetchPopularPeople } from "../../store/actions/fetchPeopleAction";
 import Pagination from "../../components/Pagination";
-import { CircularProgress } from "@mui/material";
+import { LinearProgress } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 
 function PopularPeople(props) {
@@ -68,7 +68,7 @@ function PopularPeople(props) {
       </div>
     </div>
   ) : (
-    <CircularProgress className="spinner" />
+    <LinearProgress />
   );
 }
 

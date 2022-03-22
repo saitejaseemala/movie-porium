@@ -8,7 +8,7 @@ import Chip from "../../components/Chip";
 import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import Pagination from "../../components/Pagination";
 import { fetchMovieDetailsOnGenre } from "../../store/actions/fetchDetailsOnGenre";
-import { CircularProgress } from "@mui/material";
+import { LinearProgress } from "@mui/material";
 
 function Movie(props) {
   const [search, setSearch] = useState("");
@@ -143,7 +143,7 @@ function Movie(props) {
       </div>
     </div>
   ) : (
-    <CircularProgress className="spinner" />
+    <LinearProgress className="spinner" />
   );
 }
 

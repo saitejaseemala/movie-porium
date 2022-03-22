@@ -14,7 +14,7 @@ import {
   useSearchParams,
   useNavigate,
 } from "react-router-dom";
-import { CircularProgress } from "@mui/material";
+import { LinearProgress } from "@mui/material";
 import "./SearchPage.css";
 
 function SearchPage(props) {
@@ -229,7 +229,7 @@ function SearchPage(props) {
       </div>
     </div>
   ) : (
-    <CircularProgress className="spinner" />
+    <LinearProgress />
   );
 }
 

@@ -8,7 +8,7 @@ import Chip from "../../components/Chip";
 import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import Pagination from "../../components/Pagination";
 import { fetchTvDetailsOnGenre } from "../../store/actions/fetchDetailsOnGenre";
-import { CircularProgress } from "@mui/material";
+import { LinearProgress } from "@mui/material";
 
 function TvShow(props) {
   const [search, setSearch] = useState("");
@@ -141,7 +141,7 @@ function TvShow(props) {
       </div>
     </div>
   ) : (
-    <CircularProgress className="spinner" />
+    <LinearProgress />
   );
 }
 const mapStateToProps = (state) => {
