@@ -7,6 +7,7 @@ import Person from "../../components/Details/Person";
 function CelebrityDetail(props) {
   const { personId } = useParams();
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     props.fetchPeopleInfo(personId);
   }, []);
   return (

@@ -49,6 +49,10 @@ input.mobile {
   width: 90%;
 }
 
+.home-title {
+  padding-left: 50px;
+}
+
 .btn {
   outline: none;
   border: none;

@@ -8,6 +8,7 @@ function TvShowDetail(props) {
   const { tvId } = useParams();
   const videoKey = props?.tvInfo?.videos?.results[0]?.key;
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     props.fetchTvSeriesDetails(tvId);
   }, []);
   return (

@@ -37,6 +37,7 @@ function SearchPage(props) {
   });
   const [totalPages, setTotalPages] = useState([]);
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     props.fetchSearchResults(searchTerm, pageParam);
     props.fetchMoviesOnSearch(searchTerm, pageParam);
     props.fetchTvSeriesOnSearch(searchTerm, pageParam);
@@ -76,6 +77,7 @@ function SearchPage(props) {
   }, [props.peopleOnSearch, peopleToggle]);
 
   const onPageChangeHandler = (val) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     const pageNo = val;
     setActivePage(pageNo);
     if (allToggle) {
@@ -93,12 +95,14 @@ function SearchPage(props) {
   };
 
   const decrementHandler = (e) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setPageChanger(pageChanger - 10);
     setActivePage(pageChanger - 9);
     onPageChangeHandler(pageChanger - 9);
   };
 
   const incrementHandler = (e) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setPageChanger(pageChanger + 10);
     setActivePage(pageChanger + 11);
     onPageChangeHandler(pageChanger + 11);

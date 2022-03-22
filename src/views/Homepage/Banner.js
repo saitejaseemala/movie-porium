@@ -8,6 +8,7 @@ function Banner(props) {
   const [popularMovieBanner, setPopularMovieBanner] = useState("");
   const baseImageUrl = "https://image.tmdb.org/t/p/original";
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     props.fetchPopularMovies();
   }, []);
 

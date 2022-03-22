@@ -20,6 +20,7 @@ function PopularPeople(props) {
     }
   });
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     props.fetchPopularPeople(pageParam);
   }, []);
 
@@ -28,18 +29,21 @@ function PopularPeople(props) {
   }, [props.people]);
 
   const onPageChangeHandler = (val) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     const pageNo = val;
     setActivePage(pageNo);
     props.fetchPopularPeople(pageNo);
   };
 
   const decrementHandler = (e) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setPageChanger(pageChanger - 10);
     setActivePage(pageChanger - 9);
     onPageChangeHandler(pageChanger - 9);
   };
 
   const incrementHandler = (e) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setPageChanger(pageChanger + 10);
     setActivePage(pageChanger + 11);
     onPageChangeHandler(pageChanger + 11);

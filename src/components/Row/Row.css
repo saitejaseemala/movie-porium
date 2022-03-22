@@ -10,6 +10,7 @@
 
 .row {
   padding-left: 3rem;
+  min-height: 380px;
 }
 
 .row-section {

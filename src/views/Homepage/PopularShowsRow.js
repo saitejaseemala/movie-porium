@@ -9,6 +9,7 @@ import Row from "../../components/Row";
 
 function PopularShows(props) {
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     props.fetchPopularMovies();
     props.fetchPopularTvSeries();
   }, []);
@@ -16,6 +17,7 @@ function PopularShows(props) {
   return (
     <div className="popular-container">
       <div className="movies">
+        <h2 className="home-title">What's Popular</h2>
         {props.popularMovies && (
           <Row
             title="What's Popular"
@@ -25,6 +27,7 @@ function PopularShows(props) {
         )}
       </div>
       <div className="tv-series">
+        <h2 className="home-title">Popular On TV</h2>
         {props.popularTvSeries && (
           <Row
             title="Popular On TV"

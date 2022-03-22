@@ -8,6 +8,7 @@ function MovieDetail(props) {
   const { movieId } = useParams();
   const videoKey = props?.movieInfo?.videos?.results[0]?.key;
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     props.fetchMovieDetails(movieId);
   }, []);
   return (

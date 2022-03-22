@@ -21,13 +21,13 @@ function Footer() {
           <nav className="footer-nav">
             <ul>
               <li>
-                <Link to="/popular-movies">Popular</Link>
+                <Link to="/popular-movies?page=1">Popular</Link>
               </li>
               <li>
-                <Link to="top-movies">Top Rated</Link>
+                <Link to="top-movies?page=1">Top Rated</Link>
               </li>
               <li>
-                <Link to="popular-people">People</Link>
+                <Link to="popular-people?page=1">People</Link>
               </li>
             </ul>
           </nav>

@@ -28,6 +28,7 @@ function UpcomingMovies(props) {
   const [genreId, setGenreId] = useState([]);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     props.fetchUpcomingMovies(pageParam);
     props.fetchMovieGenres();
   }, []);
@@ -44,6 +45,7 @@ function UpcomingMovies(props) {
   }, [props.movieResultsOnGenre, genreToggle]);
 
   const onPageChangeHandler = (val) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     const pageNo = val;
     setActivePage(pageNo);
     if (genreToggle) {
@@ -54,12 +56,14 @@ function UpcomingMovies(props) {
   };
 
   const decrementHandler = (e) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setPageChanger(pageChanger - 10);
     setActivePage(pageChanger - 9);
     onPageChangeHandler(pageChanger - 9);
   };
 
   const incrementHandler = (e) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setPageChanger(pageChanger + 10);
     setActivePage(pageChanger + 11);
     onPageChangeHandler(pageChanger + 11);
@@ -93,7 +97,7 @@ function UpcomingMovies(props) {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <Link className="search-btn" to={`/search/${search}`}>
+          <Link className="search-btn" to={`/search/${search}?page=1`}>
             Search
           </Link>
         </div>
