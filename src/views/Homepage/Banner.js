@@ -53,7 +53,14 @@ function Banner(props) {
               <form onSubmit={onSearchHandler}>
                 <input
                   type="text"
+                  className="window"
                   placeholder="Search for a movie, tv show, person..."
+                  ref={inputRef}
+                ></input>
+                <input
+                  type="text"
+                  className="mobile"
+                  placeholder="Search..."
                   ref={inputRef}
                 ></input>
                 <button className="search-button btn" onClick={onSearchHandler}>

@@ -6,7 +6,6 @@ function Chip(props) {
   const [clicked, setClicked] = useState(props.genreArray);
   const [clickToggle, setClickToggle] = useState(false);
   useEffect(() => {
-    console.log("entt");
     clickToggle && props.onClickHandler(clicked.toString());
     setClickToggle(false);
   }, [clickToggle]);
@@ -14,7 +13,6 @@ function Chip(props) {
     <div className="genre-container">
       <div className="genre-card">
         <p className="genre-title">Genres</p>
-        {console.log("clicked", clicked)}
         {props.genres &&
           props.genres.map((genre) => {
             return (

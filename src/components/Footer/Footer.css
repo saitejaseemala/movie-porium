@@ -6,44 +6,45 @@ li a {
 }
 
 .footer-section {
-  width: 100%;
+  width: 100vw;
   margin-top: 5rem;
 }
 
 .footer {
   background: black;
-  padding: 64px 40px;
+  padding: 5rem 0;
   color: white;
   font-family: "Fredoka", sans-serif;
 }
 
 .copyright {
-  margin-left: 100px;
+  margin-left: 5rem;
 }
 
 .copy-p {
-  margin-left: 10px;
-  font-size: 20px;
+  margin-left: 1rem;
+  font-size: 1.2rem;
 }
 
 .footer-logo {
   object-fit: contain;
-  max-height: 100px;
+  max-height: 6.5rem;
 }
 
 .footer-nav ul {
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
-  padding-top: 30px;
+  row-gap: 1rem;
+  padding-top: 2.5rem;
   list-style-type: none;
 }
 
 .social {
   display: flex;
-  padding-top: 50px;
-  padding-left: 10px;
+  align-items: center;
+  justify-content: center;
   column-gap: 10px;
+  margin-right: 3rem;
 }
 
 .social a {
@@ -53,54 +54,41 @@ li a {
 .footer-container {
   display: flex;
   align-items: center;
-  column-gap: 300px;
+  justify-content: space-between;
 }
 
-@media (max-width: 650px) {
-  .footer {
-    background: black;
-    position: relative;
-    top: 70vh;
-    padding: 64px 40px;
-    color: white;
-    font-family: "Fredoka", sans-serif;
-  }
-
-  .copy-p {
-    margin-left: 10px;
-    font-size: 20px;
-    padding-top: 10px;
-  }
-
-  .footer-logo {
-    object-fit: contain;
-    max-height: 100px;
-  }
-
-  .footer-nav ul {
-    display: flex;
+@media screen and (max-width: 650px) {
+  .footer-container {
     flex-direction: column;
-    row-gap: 10px;
-    padding-top: 30px;
-    list-style-type: none;
+    align-items: flex-start;
   }
 
-  li a {
-    text-decoration: none;
-    list-style: none;
-    color: white;
-    margin-left: 10px;
-    font-size: 1.2rem;
+  .footer-nav {
+    margin-left: 6.5rem;
   }
 
   .social {
-    display: flex;
-    padding-top: 30px;
-    padding-left: 10px;
-    column-gap: 10px;
+    margin-left: 6.5rem;
+    margin-top: 3rem;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .social a {
-    color: white;
+  .footer-nav {
+    margin-left: 1.5rem;
+  }
+
+  .social {
+    margin-left: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .copyright {
+    margin-left: 0.5rem;
   }
 }

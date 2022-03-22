@@ -28,7 +28,6 @@ function Movie(props) {
   const [genreId, setGenreId] = useState([]);
   useEffect(() => {
     props.fetchTopRatedMovies(pageParam);
-    console.log(activePage);
     props.fetchMovieGenres();
   }, []);
   useEffect(() => {

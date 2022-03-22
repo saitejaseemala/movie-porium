@@ -10,6 +10,10 @@
   font-family: "Fredoka", sans-serif;
 }
 
+input.mobile {
+  display: none;
+}
+
 .banner-content {
   padding: 100px;
   display: flex;
@@ -75,4 +79,39 @@
 .top .title-header {
   position: relative;
   bottom: 0;
+}
+
+@media screen and (max-width: 650px) {
+  .banner-content {
+    padding-left: 50px;
+  }
+
+  ::placeholder {
+    font-size: 1em;
+    padding: 5px;
+  }
+
+  input.mobile {
+    display: inline-block;
+  }
+
+  input.window {
+    display: none;
+  }
+
+  .search-bx .btn {
+    left: 75%;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .search-bx input {
+    text-indent: 0;
+  }
+}
+
+@media screen and (min-width: 2050px) {
+  .search-bx .btn {
+    left: 98%;
+  }
 }

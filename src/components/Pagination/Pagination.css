@@ -8,14 +8,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 92%;
   border-collapse: collapse;
 }
 
 .pagination li a {
   color: black;
   background-color: whitesmoke;
-  padding: 10px 20px;
+  padding: 0.3rem 0.5rem;
   border: 0.5px solid grey;
   border-top: 1px solid grey;
   border-bottom: 1px solid grey;

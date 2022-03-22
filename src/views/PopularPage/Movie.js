@@ -33,7 +33,6 @@ function Movie(props) {
 
   useEffect(() => {
     props.popularMovies.results && setResults(props.popularMovies.results);
-    console.log(activePage);
   }, [props.popularMovies]);
 
   useEffect(() => {

@@ -31,15 +31,15 @@ function Header() {
 
   return (
     <div className="header">
-      <div
-        className="hamburger-section"
-        onClick={(e) => {
-          setMenu((prevState) => {
-            return !prevState;
-          });
-        }}
-      >
-        <IconButton className="hamburger">
+      <div className="hamburger-section">
+        <IconButton
+          className="hamburger"
+          onClick={(e) => {
+            setMenu((prev) => {
+              return !prev;
+            });
+          }}
+        >
           {menu ? (
             <MenuIcon fontSize="large" />
           ) : (
@@ -74,7 +74,7 @@ function Header() {
                 className={`dropdown-content${movieActive ? " active" : ""}`}
               >
                 <Link
-                  to="/popular-movies"
+                  to="/popular-movies?page=1"
                   onClick={(e) => {
                     e.stopPropagation();
                     setMenu(true);
@@ -83,7 +83,7 @@ function Header() {
                   Popular
                 </Link>
                 <Link
-                  to="/top-movies"
+                  to="/top-movies?page=1"
                   onClick={(e) => {
                     e.stopPropagation();
                     setMenu(true);
@@ -92,7 +92,7 @@ function Header() {
                   Top Rated
                 </Link>
                 <Link
-                  to="/upcoming-movies"
+                  to="/upcoming-movies?page=1"
                   onClick={(e) => {
                     e.stopPropagation();
                     setMenu(true);
@@ -118,7 +118,7 @@ function Header() {
               </a>
               <div className={`dropdown-content${tvActive ? " active" : ""}`}>
                 <Link
-                  to="/popular-tv"
+                  to="/popular-tv?page=1"
                   onClick={(e) => {
                     e.stopPropagation();
                     setMenu(true);
@@ -127,7 +127,7 @@ function Header() {
                   Popular
                 </Link>
                 <Link
-                  to="top-tv"
+                  to="top-tv?page=1"
                   onClick={(e) => {
                     e.stopPropagation();
                     setMenu(true);

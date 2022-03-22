@@ -2,3 +2,15 @@
   margin-left: 3rem;
   padding-top: 1.5rem;
 }
+
+@media screen and (max-width: 600px) {
+  .popular-content h2 {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .popular-content h2 {
+    text-align: left;
+  }
+}

@@ -30,7 +30,6 @@ function UpcomingMovies(props) {
   useEffect(() => {
     props.fetchUpcomingMovies(pageParam);
     props.fetchMovieGenres();
-    console.log(pageChanger);
   }, []);
 
   useEffect(() => {

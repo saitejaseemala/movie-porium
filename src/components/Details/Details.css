@@ -1,7 +1,7 @@
 .details-container {
   margin: 5rem;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 1.5fr;
 }
 
 .poster-image {
@@ -132,4 +132,65 @@
   object-fit: cover;
   height: 20rem;
   width: 20rem;
+}
+
+@media screen and (max-width: 920px) {
+  .details-container {
+    grid-template-columns: 1fr;
+  }
+
+  .content {
+    margin-top: 1rem;
+  }
+
+  .details-poster {
+    justify-self: center;
+  }
+
+  .content {
+    text-align: center;
+  }
+
+  .known-as {
+    width: 100%;
+  }
+
+  .overview {
+    width: 100%;
+  }
+
+  .biography {
+    width: 100%;
+  }
+
+  .poster-image {
+    max-height: 25rem;
+  }
+}
+
+@media screen and (min-width: 920px) {
+  .details-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 1150px) {
+  .details-container {
+    grid-template-columns: 1fr 1.5fr;
+  }
+}
+
+@media screen and (min-width: 1550px) {
+  .details-container {
+    grid-template-columns: 1fr 2.5fr;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .details-container {
+    grid-template-columns: 1fr;
+  }
+  .poster-image {
+    max-height: 15rem;
+  }
 }
