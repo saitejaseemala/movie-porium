@@ -63,7 +63,9 @@ function Details({ details, trailer, type }) {
           <p className="show-rating">Rating: {details.vote_average}</p>
         )}
         {details.genres && details.genres.length > 0 && (
-          <div className="genres">Genre: {renderGenres()}</div>
+          <div className="genres">
+            <p className="genre-text">Genre:</p> {renderGenres()}
+          </div>
         )}
         {details.overview ? (
           <p className="overview">{details.overview}</p>

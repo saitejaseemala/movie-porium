@@ -56,3 +56,38 @@
 .no-results-content {
   margin: 3rem;
 }
+
+@media screen and (min-width: 2600px) {
+  .search-page-container {
+    grid-template-columns: 10% 90%;
+  }
+}
+
+@media screen and (max-width: 2600px) {
+  .search-page-container {
+    grid-template-columns: 20% 80%;
+  }
+}
+
+@media screen and (max-width: 1550px) {
+  .search-page-container {
+    grid-template-columns: 25% 75%;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .search-page-container {
+    grid-template-columns: 30% 70%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .search-page-container {
+    grid-template-columns: 100%;
+  }
+
+  .search-filters {
+    max-width: 90%;
+    margin-left: 10px;
+  }
+}

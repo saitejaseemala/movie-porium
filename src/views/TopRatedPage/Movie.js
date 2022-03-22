@@ -81,6 +81,7 @@ function Movie(props) {
 
   return !props.loading ? (
     <div className="top-rated">
+      <h4 className="title-header">Top Rated Movies</h4>
       <div className="genre-section">
         <div className="search-box">
           <input
@@ -100,7 +101,7 @@ function Movie(props) {
           genreArray={genreId}
         />
       </div>
-      <div className="top-rated-section">
+      <div className="top-rated-movie-section">
         {results.length > 0 ? (
           <Row title="Top Rated Movies" shows={results} type={"movie"} />
         ) : (

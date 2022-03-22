@@ -94,7 +94,7 @@
   outline: none;
   border: none;
   padding: 10px 20px;
-  margin: 0 5px;
+  margin: 5px 5px;
   border-collapse: collapse;
   background: black;
   color: white;
@@ -134,9 +134,14 @@
   width: 20rem;
 }
 
+.genre-text {
+  display: inline-block;
+}
+
 @media screen and (max-width: 920px) {
   .details-container {
     grid-template-columns: 1fr;
+    margin: 5rem 0;
   }
 
   .content {
@@ -166,6 +171,11 @@
   .poster-image {
     max-height: 25rem;
   }
+
+  .genre-text {
+    display: block;
+    margin-bottom: 1em;
+  }
 }
 
 @media screen and (min-width: 920px) {
@@ -180,9 +190,21 @@
   }
 }
 
-@media screen and (min-width: 1550px) {
+@media screen and (min-width: 1400px) {
+  .details-container {
+    grid-template-columns: 1fr 1.8fr;
+  }
+}
+
+@media screen and (min-width: 1800px) {
   .details-container {
     grid-template-columns: 1fr 2.5fr;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  .details-container {
+    grid-template-columns: 1fr 3.5fr;
   }
 }
 

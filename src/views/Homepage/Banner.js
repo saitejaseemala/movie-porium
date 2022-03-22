@@ -13,6 +13,7 @@ function Banner(props) {
 
   const navigate = useNavigate();
   const inputRef = useRef("");
+  const mobileRef = useRef("");
 
   useEffect(() => {
     if (props.popularMovies) {
@@ -23,7 +24,8 @@ function Banner(props) {
   }, [props.popularMovies]);
 
   const onSearchHandler = () => {
-    const searchTerm = inputRef.current.value;
+    const searchTerm = inputRef.current.value || mobileRef.current.value;
+    console.log("spi", searchTerm);
     const path = "search/" + searchTerm + "?page=1";
     navigate(path);
   };
@@ -61,7 +63,7 @@ function Banner(props) {
                   type="text"
                   className="mobile"
                   placeholder="Search..."
-                  ref={inputRef}
+                  ref={mobileRef}
                 ></input>
                 <button className="search-button btn" onClick={onSearchHandler}>
                   Search

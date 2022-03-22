@@ -83,6 +83,7 @@ function UpcomingMovies(props) {
 
   return !props.loading ? (
     <div className="upcoming">
+      <h4 className="title-header">Upcoming Movies</h4>
       <div className="genre-section">
         <div className="search-box">
           <input

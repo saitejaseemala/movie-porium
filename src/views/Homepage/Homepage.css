@@ -56,7 +56,7 @@ input.mobile {
   color: white;
   background: linear-gradient(to left, coral, purple);
   cursor: pointer;
-  padding: 1rem 2rem;
+  padding: 1.1rem 2rem;
   position: absolute;
   top: 40px;
   font-size: 1rem;

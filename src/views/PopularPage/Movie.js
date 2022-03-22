@@ -82,6 +82,7 @@ function Movie(props) {
 
   return !props.loading ? (
     <div className="popular">
+      <h4 className="title-header">Popular Movies</h4>
       <div className="genre-section">
         <div className="search-box">
           <input

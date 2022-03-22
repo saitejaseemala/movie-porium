@@ -82,6 +82,7 @@ function TvShow(props) {
   };
   return !props.loading ? (
     <div className="top-rated">
+      <h4 className="title-header">Top Rated Tv Shows</h4>
       <div className="genre-section">
         <div className="search-box">
           <input
