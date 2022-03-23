@@ -15,6 +15,7 @@ function Movie(props) {
   const [queryParam] = useSearchParams();
   const pageParam = queryParam.get("page");
   const [results, setResults] = useState([]);
+  const [totalPages, setTotalPages] = useState("");
   const navigate = useNavigate();
   const [activePage, setActivePage] = useState(parseInt(pageParam));
   const [pageChanger, setPageChanger] = useState(() => {
@@ -34,12 +35,16 @@ function Movie(props) {
 
   useEffect(() => {
     props.popularMovies.results && setResults(props.popularMovies.results);
+    props.popularMovies.results &&
+      setTotalPages(props.popularMovies.total_pages);
   }, [props.popularMovies]);
 
   useEffect(() => {
     if (genreToggle) {
       props.movieResultsOnGenre.results &&
         setResults(props.movieResultsOnGenre.results);
+      props.movieResultsOnGenre.results &&
+        setTotalPages(props.movieResultsOnGenre.total_pages);
     }
   }, [props.movieResultsOnGenre, genreToggle]);
 
@@ -77,6 +82,8 @@ function Movie(props) {
     }
     props.movieResultsOnGenre.results &&
       setResults(props.movieResultsOnGenre.results);
+    props.movieResultsOnGenre.results &&
+      setTotalPages(props.movieResultsOnGenre.total_pages);
     setGenreToggle(true);
     setGenreId(genreIds.split(",").map(Number));
     navigate("/popular-movies?page=1");
@@ -116,20 +123,9 @@ function Movie(props) {
         )}
         {(props.popularMovies || props.movieResultsOnGenre) && (
           <div className="movie-pagination">
-            {genreToggle && props.movieResultsOnGenre.total_pages > 1 && (
+            {totalPages > 1 && (
               <Pagination
-                totalPages={props.movieResultsOnGenre.total_pages}
-                pageChanger={pageChanger}
-                activePage={activePage}
-                onPageChange={onPageChangeHandler}
-                decrementHandler={decrementHandler}
-                incrementHandler={incrementHandler}
-                type={"popular-movies"}
-              />
-            )}
-            {!genreToggle && props.popularMovies.total_pages > 1 && (
-              <Pagination
-                totalPages={props.popularMovies.total_pages}
+                totalPages={totalPages}
                 pageChanger={pageChanger}
                 activePage={activePage}
                 onPageChange={onPageChangeHandler}

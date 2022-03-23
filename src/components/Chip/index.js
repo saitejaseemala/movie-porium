@@ -5,7 +5,12 @@ function Chip(props) {
   const [clicked, setClicked] = useState(props.genreArray);
   const [clickToggle, setClickToggle] = useState(false);
   useEffect(() => {
-    clickToggle && props.onClickHandler(clicked.toString());
+    const genresClicked = clicked;
+    const index = genresClicked.indexOf(0);
+    if (index > -1) {
+      genresClicked.splice(index, 1);
+    }
+    clickToggle && props.onClickHandler(genresClicked.toString());
     setClickToggle(false);
   }, [clickToggle]);
   return (
@@ -27,10 +32,12 @@ function Chip(props) {
                       if (index > -1) {
                         prev.splice(index, 1);
                       }
-                      console.log([...prev, genre.id]);
                       return [...prev, genre.id];
                     } else {
-                      console.log(prev.filter((ele) => ele !== genre.id));
+                      const index = prev.indexOf(0);
+                      if (index > -1) {
+                        prev.splice(index, 1);
+                      }
                       return prev.filter((ele) => ele !== genre.id);
                     }
                   });

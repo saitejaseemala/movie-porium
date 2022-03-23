@@ -47,7 +47,7 @@ function SearchPage(props) {
   useEffect(() => {
     if (allToggle) {
       props.searchResults && setResults(props.searchResults.results);
-      props.searchResults.total_pages &&
+      props.searchResults.results &&
         setTotalPages(props.searchResults.total_pages);
     }
   }, [props.searchResults, allToggle]);
@@ -55,7 +55,7 @@ function SearchPage(props) {
   useEffect(() => {
     if (movieToggle) {
       props.moviesOnSearch && setResults(props.moviesOnSearch.results);
-      props.moviesOnSearch.total_pages &&
+      props.moviesOnSearch.results &&
         setTotalPages(props.moviesOnSearch.total_pages);
     }
   }, [props.moviesOnSearch, movieToggle]);
@@ -63,7 +63,7 @@ function SearchPage(props) {
   useEffect(() => {
     if (tvToggle) {
       props.tvSeriesOnSearch && setResults(props.tvSeriesOnSearch.results);
-      props.tvSeriesOnSearch.total_pages &&
+      props.tvSeriesOnSearch.results &&
         setTotalPages(props.tvSeriesOnSearch.total_pages);
     }
   }, [props.tvSeriesOnSearch, tvToggle]);
@@ -71,7 +71,7 @@ function SearchPage(props) {
   useEffect(() => {
     if (peopleToggle) {
       props.peopleOnSearch && setResults(props.peopleOnSearch.results);
-      props.peopleOnSearch.total_pages &&
+      props.peopleOnSearch.results &&
         setTotalPages(props.peopleOnSearch.total_pages);
     }
   }, [props.peopleOnSearch, peopleToggle]);
@@ -215,7 +215,7 @@ function SearchPage(props) {
             There are no results that matched your query.
           </h3>
         )}
-        {props.searchResults.total_pages > 1 && (
+        {totalPages > 1 && (
           <Pagination
             totalPages={totalPages}
             pageChanger={pageChanger}

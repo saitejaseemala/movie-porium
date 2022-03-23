@@ -13,6 +13,7 @@ import { LinearProgress } from "@mui/material";
 function Movie(props) {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
+  const [totalPages, setTotalPages] = useState("");
   const [queryParam] = useSearchParams();
   const pageParam = queryParam.get("page");
   const navigate = useNavigate();
@@ -33,12 +34,16 @@ function Movie(props) {
   }, []);
   useEffect(() => {
     props.topRatedMovies.results && setResults(props.topRatedMovies.results);
+    props.topRatedMovies.results &&
+      setTotalPages(props.topRatedMovies.total_pages);
   }, [props.topRatedMovies]);
 
   useEffect(() => {
     if (genreToggle) {
       props.movieResultsOnGenre.results &&
         setResults(props.movieResultsOnGenre.results);
+      props.movieResultsOnGenre.results &&
+        setTotalPages(props.movieResultsOnGenre.total_pages);
     }
   }, [props.movieResultsOnGenre, genreToggle]);
 
@@ -76,6 +81,8 @@ function Movie(props) {
     }
     props.movieResultsOnGenre.results &&
       setResults(props.movieResultsOnGenre.results);
+    props.movieResultsOnGenre.results &&
+      setTotalPages(props.movieResultsOnGenre.total_pages);
     setGenreToggle(true);
     setGenreId(genreIds.split(",").map(Number));
     navigate("/top-movies?page=1");
@@ -109,24 +116,13 @@ function Movie(props) {
         {results.length > 0 ? (
           <Row title="Top Rated Movies" shows={results} type={"movie"} />
         ) : (
-          <h3>No Results Found</h3>
+          <h3 className="no-results">No Results Found</h3>
         )}
         {(props.topRatedMovies || props.movieResultsOnGenre) && (
           <div className="movie-pagination">
-            {genreToggle && props.movieResultsOnGenre.total_pages > 1 && (
+            {totalPages > 1 && (
               <Pagination
-                totalPages={props.movieResultsOnGenre.total_pages}
-                pageChanger={pageChanger}
-                activePage={activePage}
-                onPageChange={onPageChangeHandler}
-                decrementHandler={decrementHandler}
-                incrementHandler={incrementHandler}
-                type={"top-movies"}
-              />
-            )}
-            {!genreToggle && props.topRatedMovies.total_pages > 1 && (
-              <Pagination
-                totalPages={props.topRatedMovies.total_pages}
+                totalPages={totalPages}
                 pageChanger={pageChanger}
                 activePage={activePage}
                 onPageChange={onPageChangeHandler}

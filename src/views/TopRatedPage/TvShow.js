@@ -13,6 +13,7 @@ import { LinearProgress } from "@mui/material";
 function TvShow(props) {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
+  const [totalPages, setTotalPages] = useState("");
   const [queryParam] = useSearchParams();
   const pageParam = queryParam.get("page");
   const navigate = useNavigate();
@@ -35,12 +36,16 @@ function TvShow(props) {
   useEffect(() => {
     props.topRatedTvSeries.results &&
       setResults(props.topRatedTvSeries.results);
+    props.topRatedTvSeries.results &&
+      setTotalPages(props.topRatedTvSeries.total_pages);
   }, [props.topRatedTvSeries]);
 
   useEffect(() => {
     if (genreToggle) {
       props.tvResultsOnGenre.results &&
         setResults(props.tvResultsOnGenre.results);
+      props.tvResultsOnGenre.results &&
+        setTotalPages(props.tvResultsOnGenre.total_pages);
     }
   }, [props.tvResultsOnGenre, genreToggle]);
 
@@ -78,6 +83,8 @@ function TvShow(props) {
     }
     props.tvResultsOnGenre.results &&
       setResults(props.tvResultsOnGenre.results);
+    props.tvResultsOnGenre.results &&
+      setTotalPages(props.tvResultsOnGenre.total_pages);
     setGenreToggle(true);
     setGenreId(genreIds.split(",").map(Number));
     navigate("/top-tv?page=1");
@@ -114,20 +121,9 @@ function TvShow(props) {
         )}
         {(props.topRatedTvSeries || props.tvResultsOnGenre) && (
           <div className="movie-pagination">
-            {genreToggle && props.tvResultsOnGenre.total_pages > 1 && (
+            {totalPages > 1 && (
               <Pagination
-                totalPages={props.tvResultsOnGenre.total_pages}
-                pageChanger={pageChanger}
-                activePage={activePage}
-                onPageChange={onPageChangeHandler}
-                decrementHandler={decrementHandler}
-                incrementHandler={incrementHandler}
-                type={"top-tv"}
-              />
-            )}
-            {!genreToggle && props.topRatedTvSeries.total_pages > 1 && (
-              <Pagination
-                totalPages={props.topRatedTvSeries.total_pages}
+                totalPages={totalPages}
                 pageChanger={pageChanger}
                 activePage={activePage}
                 onPageChange={onPageChangeHandler}

@@ -14,6 +14,7 @@ import { LinearProgress } from "@mui/material";
 function UpcomingMovies(props) {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
+  const [totalPages, setTotalPages] = useState("");
   const [queryParam] = useSearchParams();
   const pageParam = queryParam.get("page");
   const navigate = useNavigate();
@@ -38,12 +39,16 @@ function UpcomingMovies(props) {
 
   useEffect(() => {
     props.upcomingMovies.results && setResults(props.upcomingMovies.results);
+    props.upcomingMovies.results &&
+      setTotalPages(props.upcomingMovies.total_pages);
   }, [props.upcomingMovies]);
 
   useEffect(() => {
     if (genreToggle) {
       props.upcomingOnGenre.results &&
         setResults(props.upcomingOnGenre.results);
+      props.upcomingOnGenre.results &&
+        setTotalPages(props.upcomingOnGenre.total_pages);
     }
   }, [props.upcomingOnGenre, genreToggle]);
 
@@ -80,6 +85,8 @@ function UpcomingMovies(props) {
       setGenreToggle(false);
     }
     props.upcomingOnGenre.results && setResults(props.upcomingOnGenre.results);
+    props.upcomingOnGenre.results &&
+      setTotalPages(props.upcomingOnGenre.total_pages);
     setGenreToggle(true);
     setGenreId(genreIds.split(",").map(Number));
     navigate("/upcoming-movies?page=1");
@@ -115,22 +122,12 @@ function UpcomingMovies(props) {
         ) : (
           <h3 className="no-results">No Results Found</h3>
         )}
-        {(props.popularMovies || props.upcomingOnGenre) && (
+        {(props.upcomingMovies || props.upcomingOnGenre) && (
           <div className="movie-pagination">
-            {genreToggle && props.upcomingOnGenre.total_pages > 1 && (
+            {console.log(totalPages)}
+            {totalPages > 1 && (
               <Pagination
-                totalPages={props.upcomingOnGenre.total_pages}
-                pageChanger={pageChanger}
-                activePage={activePage}
-                onPageChange={onPageChangeHandler}
-                decrementHandler={decrementHandler}
-                incrementHandler={incrementHandler}
-                type={"upcoming-movies"}
-              />
-            )}
-            {!genreToggle && props.upcomingMovies.total_pages > 1 && (
-              <Pagination
-                totalPages={props.upcomingMovies.total_pages}
+                totalPages={totalPages}
                 pageChanger={pageChanger}
                 activePage={activePage}
                 onPageChange={onPageChangeHandler}
