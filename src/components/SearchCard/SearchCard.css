@@ -67,4 +67,13 @@ h3.person-name {
   .overview-section {
     display: none;
   }
+  h3.release-title,
+  h3.person-name {
+    font-size: 0.9em;
+  }
+  .search-release-date,
+  .person-department {
+    color: #757575;
+    font-size: 0.8em;
+  }
 }

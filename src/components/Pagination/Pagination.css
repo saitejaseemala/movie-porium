@@ -32,3 +32,10 @@ li.active a {
   background-color: dodgerblue !important;
   color: white !important;
 }
+
+@media screen and (max-width: 500px) {
+  .pagination li a {
+    padding: 0.1em 0.1em;
+    font-size: 1em;
+  }
+}

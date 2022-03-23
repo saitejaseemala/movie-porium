@@ -83,7 +83,7 @@
 
 @media screen and (max-width: 900px) {
   .search-page-container {
-    grid-template-columns: 100%;
+    grid-template-columns: 90%;
   }
 
   .search-filters {

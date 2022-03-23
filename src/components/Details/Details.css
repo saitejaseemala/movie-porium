@@ -215,4 +215,41 @@
   .poster-image {
     max-height: 15rem;
   }
+
+  .title {
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .title {
+    font-size: 1.2em;
+  }
+
+  .overview {
+    font-size: 0.8em;
+  }
+
+  h3 {
+    font-size: 1em;
+  }
+
+  p {
+    font-size: 0.8em;
+  }
+
+  .back-btn {
+    font-size: 0.9em;
+  }
+
+  .css-ptiqhd-MuiSvgIcon-root {
+    font-size: 1em !important;
+  }
+
+  .overview {
+    width: 95vw;
+    color: #757575;
+    text-align: center;
+    padding-left: 0.8em;
+  }
 }

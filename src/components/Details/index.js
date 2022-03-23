@@ -70,7 +70,7 @@ function Details({ details, trailer, type }) {
         {details.overview ? (
           <p className="overview">{details.overview}</p>
         ) : (
-          <h2 className="overview">Details Not Found</h2>
+          <p className="overview">Details Not Found</p>
         )}
         {trailer && (
           <a
