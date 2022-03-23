@@ -6,6 +6,7 @@ import {
 } from "../../store/actions/fetchPopularAction";
 import "./Homepage.css";
 import Row from "../../components/Row";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 function PopularShows(props) {
   useEffect(() => {
@@ -13,6 +14,11 @@ function PopularShows(props) {
     props.fetchPopularMovies();
     props.fetchPopularTvSeries();
   }, []);
+
+  const chevronHandler = (e) => {
+    console.log(e);
+    window.scrollBy(100, 0);
+  };
 
   return (
     <div className="popular-container">

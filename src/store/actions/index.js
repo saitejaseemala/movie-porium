@@ -177,6 +177,15 @@ export const getMoviesOnGenre = (movieResultsOnGenre) => {
   };
 };
 
+export const getUpcomingOnGenre = (upcomingOnGenre) => {
+  return {
+    type: actionType.FETCH_UPCOMING_ON_GENRE,
+    payload: {
+      upcomingOnGenre,
+    },
+  };
+};
+
 export const getTvOnGenre = (tvResultsOnGenre) => {
   return {
     type: actionType.FETCH_TV_ON_GENRE,

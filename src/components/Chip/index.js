@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import CloseIcon from "@mui/icons-material/Close";
 import "./chip.css";
 
 function Chip(props) {
@@ -24,8 +23,16 @@ function Chip(props) {
                 onClick={() => {
                   setClicked((prev) => {
                     if (!prev.includes(genre.id)) {
+                      const index = prev.indexOf(0);
+                      if (index > -1) {
+                        prev.splice(index, 1);
+                      }
+                      console.log([...prev, genre.id]);
                       return [...prev, genre.id];
-                    } else return prev.filter((ele) => ele !== genre.id);
+                    } else {
+                      console.log(prev.filter((ele) => ele !== genre.id));
+                      return prev.filter((ele) => ele !== genre.id);
+                    }
                   });
                   setClickToggle(true);
                 }}

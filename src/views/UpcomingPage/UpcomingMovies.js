@@ -7,7 +7,8 @@ import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import "./UpcomingMovies.css";
 import Chip from "../../components/Chip";
 import Pagination from "../../components/Pagination";
-import { fetchMovieDetailsOnGenre } from "../../store/actions/fetchDetailsOnGenre";
+import { fetchUpcomingOnGenre } from "../../store/actions/fetchDetailsOnGenre";
+import moment from "moment";
 import { LinearProgress } from "@mui/material";
 
 function UpcomingMovies(props) {
@@ -26,10 +27,12 @@ function UpcomingMovies(props) {
   });
   const [genreToggle, setGenreToggle] = useState(false);
   const [genreId, setGenreId] = useState([]);
+  const date = new Date();
+  const formattedDate = moment(date).format("YYYY-MM-DD");
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    props.fetchUpcomingMovies(pageParam);
+    props.fetchUpcomingMovies(formattedDate, pageParam);
     props.fetchMovieGenres();
   }, []);
 
@@ -39,19 +42,19 @@ function UpcomingMovies(props) {
 
   useEffect(() => {
     if (genreToggle) {
-      props.movieResultsOnGenre.results &&
-        setResults(props.movieResultsOnGenre.results);
+      props.upcomingOnGenre.results &&
+        setResults(props.upcomingOnGenre.results);
     }
-  }, [props.movieResultsOnGenre, genreToggle]);
+  }, [props.upcomingOnGenre, genreToggle]);
 
   const onPageChangeHandler = (val) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     const pageNo = val;
     setActivePage(pageNo);
     if (genreToggle) {
-      props.fetchMovieOnGenre(genreId, pageNo);
+      props.fetchMovieOnGenre(formattedDate, genreId.toString(), pageNo);
     } else {
-      props.fetchUpcomingMovies(pageNo);
+      props.fetchUpcomingMovies(formattedDate, pageNo);
     }
   };
 
@@ -71,13 +74,12 @@ function UpcomingMovies(props) {
 
   const onGenreSelection = (genreIds) => {
     if (genreIds) {
-      props.fetchMovieOnGenre(genreIds, 1);
+      props.fetchMovieOnGenre(formattedDate, genreIds, 1);
     } else {
-      props.fetchUpcomingMovies(1);
+      props.fetchUpcomingMovies(formattedDate, 1);
       setGenreToggle(false);
     }
-    props.movieResultsOnGenre.results &&
-      setResults(props.movieResultsOnGenre.results);
+    props.upcomingOnGenre.results && setResults(props.upcomingOnGenre.results);
     setGenreToggle(true);
     setGenreId(genreIds.split(",").map(Number));
     navigate("/upcoming-movies?page=1");
@@ -113,11 +115,11 @@ function UpcomingMovies(props) {
         ) : (
           <h3 className="no-results">No Results Found</h3>
         )}
-        {(props.popularMovies || props.movieResultsOnGenre) && (
+        {(props.popularMovies || props.upcomingOnGenre) && (
           <div className="movie-pagination">
-            {genreToggle && props.movieResultsOnGenre.total_pages > 1 && (
+            {genreToggle && props.upcomingOnGenre.total_pages > 1 && (
               <Pagination
-                totalPages={props.movieResultsOnGenre.total_pages}
+                totalPages={props.upcomingOnGenre.total_pages}
                 pageChanger={pageChanger}
                 activePage={activePage}
                 onPageChange={onPageChangeHandler}
@@ -150,21 +152,21 @@ const mapStateToProps = (state) => {
   return {
     upcomingMovies: state.upcomingMovies,
     movieGenres: state.movieGenres,
-    movieResultsOnGenre: state.movieResultsOnGenre,
+    upcomingOnGenre: state.upcomingOnGenre,
     loading: state.loading,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchUpcomingMovies: (page) => {
-      dispatch(fetchUpcomingMovies(page));
+    fetchUpcomingMovies: (releaseDate, page) => {
+      dispatch(fetchUpcomingMovies(releaseDate, page));
     },
     fetchMovieGenres: () => {
       dispatch(fetchMovieGenres());
     },
-    fetchMovieOnGenre: (genreIds, pageNo) => {
-      dispatch(fetchMovieDetailsOnGenre(genreIds, pageNo));
+    fetchMovieOnGenre: (date, genreIds, pageNo) => {
+      dispatch(fetchUpcomingOnGenre(date, genreIds, pageNo));
     },
   };
 };

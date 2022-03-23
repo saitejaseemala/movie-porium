@@ -20,6 +20,7 @@ import {
   FETCH_PEOPLE_ON_SEARCH,
   FETCH_MOVIES_ON_GENRE,
   FETCH_TV_ON_GENRE,
+  FETCH_UPCOMING_ON_GENRE,
 } from "../action-types/actionTypes";
 
 const initialState = {
@@ -42,6 +43,7 @@ const initialState = {
   searchResults: {},
   tvResultsOnGenre: {},
   movieResultsOnGenre: {},
+  upcomingOnGenre: {},
   loading: false,
   error: "",
 };
@@ -194,6 +196,14 @@ const movieReducer = (state = initialState, action) => {
       return {
         ...state,
         tvResultsOnGenre: action.payload.tvResultsOnGenre,
+        loading: false,
+      };
+    }
+
+    case FETCH_UPCOMING_ON_GENRE: {
+      return {
+        ...state,
+        upcomingOnGenre: action.payload.upcomingOnGenre,
         loading: false,
       };
     }

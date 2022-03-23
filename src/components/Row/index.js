@@ -9,7 +9,6 @@ function Row(props) {
   const baseImageUrl = "https://image.tmdb.org/t/p/original";
   return props.shows ? (
     <div className="row">
-      {/* <h2 className="title-header">{props.title}</h2> */}
       <div className="row-section">
         {props.shows &&
           props.shows.map((show, index) => {

@@ -85,6 +85,18 @@ input.mobile {
   bottom: 0;
 }
 
+.chevron-right {
+  position: absolute;
+  right: 0;
+  top: 21em;
+  background: rgba(0, 0, 0, 0.5);
+  width: 1.5em !important;
+  cursor: pointer;
+  height: 2.5em !important;
+  color: white;
+  font-size: 12px;
+}
+
 @media screen and (max-width: 650px) {
   .banner-content {
     padding-left: 50px;

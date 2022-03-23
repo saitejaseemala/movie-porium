@@ -29,7 +29,7 @@
 
 @media screen and (max-width: 350px) {
   .card-section {
-    grid-template-columns: 1fr;
+    grid-template-columns: 60vw;
   }
   .card-image {
     width: 80%;
@@ -39,32 +39,45 @@
   }
 }
 
-@media screen and (max-width: 598px) {
+@media screen and (max-width: 600px) {
   .card-section {
     justify-content: center;
+    grid-template-columns: 55vw;
   }
 }
 
 @media screen and (min-width: 600px) {
   .card-section {
-    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    grid-template-columns: 40vw;
   }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 670px) {
   .card-section {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 35vw 35vw;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .card-section {
+    grid-template-columns: repeat(3, 25vw);
+    column-gap: 10px;
+    justify-content: center;
+    align-items: center;
   }
 }
 
 @media screen and (min-width: 1400px) {
   .card-section {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 20vw);
   }
 }
 
 @media screen and (min-width: 2300px) {
   .card-section {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 15vw);
   }
 }
