@@ -164,6 +164,10 @@ a.search-btn {
     display: grid;
     grid-template-columns: repeat(2, 20vw);
   }
+  .no-results {
+    margin-left: 4rem;
+    margin-top: 1rem;
+  }
 }
 
 @media screen and (max-width: 680px) {

@@ -158,6 +158,11 @@ a.search-btn {
   .search-box .input-bx {
     margin-top: 1.6rem;
   }
+
+  .no-results {
+    margin-left: 4rem;
+    margin-top: 1rem;
+  }
 }
 
 @media screen and (max-width: 800px) {

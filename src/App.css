@@ -7,7 +7,11 @@
   font-family: "Fredoka", sans-serif;
 }
 
-footer {
-  top: 0vh;
-  position: relative;
+input,
+textarea,
+button,
+select,
+a,
+div {
+  -webkit-tap-highlight-color: transparent;
 }

@@ -48,7 +48,9 @@ function Details({ details, trailer, type }) {
           <ArrowBackIosNewIcon className="back-arrow" fontSize="small" />
           Go back
         </button>
-        <h1 className="title">{details.title || details.original_title}</h1>
+        <h1 className="title">
+          {details.title || details.original_title || details.name}
+        </h1>
         {details.release_date && (
           <p className="release-date">Release Date: {details.release_date}</p>
         )}
