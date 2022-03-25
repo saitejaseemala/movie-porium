@@ -62,17 +62,24 @@ function Details({ details, trailer, type }) {
               </p>
             )}
         {details.vote_average != 0 && (
-          <p className="show-rating">Rating: {details.vote_average}</p>
+          <div className="rating-content">
+            <p className="show-rating"> Rating: {details.vote_average}</p>
+          </div>
         )}
         {details.genres && details.genres.length > 0 && (
           <div className="genres">
-            <p className="genre-text">Genre:</p> {renderGenres()}
+            <p className="genre-text">Genre: {renderGenres()}</p>
           </div>
         )}
         {details.overview ? (
-          <p className="overview">{details.overview}</p>
+          <div className="overview-content">
+            <h3>Overview</h3>
+            <p className="overview">{details.overview}</p>
+          </div>
         ) : (
-          <p className="overview">Details Not Found</p>
+          <div className="overview-content">
+            <p className="overview">Details Not Found</p>
+          </div>
         )}
         {trailer && (
           <a

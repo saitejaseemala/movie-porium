@@ -31,27 +31,23 @@
 
 .release-date {
   padding-top: 2rem;
-  padding-left: 5px;
 }
 
 .run-time {
   padding-top: 1rem;
-  padding-left: 5px;
 }
 
 .genres {
-  padding-left: 5px;
   padding-top: 1rem;
 }
 
 .show-rating {
-  padding-left: 5px;
   padding-top: 1rem;
 }
 
 .overview {
-  padding-left: 5px;
-  padding-top: 2.5rem;
+  padding-top: 1rem;
+  color: #757575;
 }
 
 .known-as {
@@ -61,24 +57,24 @@
 
 .birth-container {
   padding-top: 2rem;
-  padding-left: 5px;
+}
+
+.birth-container h3 {
+  display: inline-block;
 }
 
 .birth-place {
-  font-size: 0.9em;
-  color: #757575;
   display: inline;
-  padding-left: 5px;
+  color: #757575;
 }
 
 .alternate-names {
   padding-top: 2.5rem;
-  padding-left: 5px;
 }
 
-.biography-content {
+.biography-content,
+.overview-content {
   padding-top: 2.5rem;
-  padding-left: 5px;
 }
 
 .biography {
@@ -202,7 +198,8 @@
     text-align: center;
   }
 
-  .biography-content h3 {
+  .biography-content h3,
+  .overview-content h3 {
     text-align: center;
   }
 
@@ -225,6 +222,13 @@
     margin: 0.1em;
   }
 
+  .genres h3 {
+    text-align: center;
+    font-size: 1em;
+    display: block !important;
+    margin-bottom: 5px;
+  }
+
   .genre-text {
     text-align: center;
     display: inline-block;
@@ -238,7 +242,7 @@
   }
 
   .back-btn {
-    padding-top: 1em;
+    padding-top: 3em;
   }
 }
 
@@ -247,5 +251,15 @@
     text-align: center;
     display: block;
     margin-bottom: 1em;
+  }
+  .birth-container h3 {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .known-as,
+  .biography,
+  .overview {
+    padding-top: 10px;
   }
 }

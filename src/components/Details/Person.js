@@ -39,19 +39,14 @@ function Person(props) {
         <h1 className="title">{props.personInfo.name}</h1>
         {props.personInfo.place_of_birth && (
           <div className="birth-container">
-            <h3>
-              Place of Birth :{" "}
-              <p className="birth-place">{props.personInfo.place_of_birth}</p>
-            </h3>
+            <h3>Place of Birth : </h3>
+            <p className="birth-place">{props.personInfo.place_of_birth}</p>
           </div>
         )}
         {knownAs && (
           <div className="alternate-names">
-            <div>
-              {" "}
-              <h3>Also Known As :</h3>
-              <p className="known-as">{knownAs}</p>{" "}
-            </div>
+            <h3>Also Known As :</h3>
+            <p className="known-as">{knownAs}</p>{" "}
           </div>
         )}
         <div className="biography-content">
