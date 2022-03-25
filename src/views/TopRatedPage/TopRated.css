@@ -4,6 +4,11 @@
   margin-top: 2rem;
 }
 
+.top-rated .left-dir,
+.top-rated .right-dir {
+  display: none !important;
+}
+
 .top-rated .row-section {
   display: grid;
   grid-template-columns: repeat(5, 15vw);

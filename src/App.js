@@ -18,20 +18,22 @@ import Upcoming from "./views/UpcomingPage/UpcomingMovies";
 function App() {
   return (
     <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route exact path="/popular-movies" element={<PopularMovie />} />
-        <Route exact path="/popular-tv" element={<PopularTv />} />
-        <Route exact path="/popular-people" element={<PopularPeople />} />
-        <Route exact path="/top-movies" element={<TopRatedMovie />} />
-        <Route exact path="/top-tv" element={<TopRatedTv />} />
-        <Route exact path="/upcoming-movies" element={<Upcoming />} />
-        <Route exact path="/movie/:movieId" element={<MovieDetail />} />
-        <Route exact path="/tv/:tvId" element={<TvShowDetail />} />
-        <Route exact path="/person/:personId" element={<CelebrityDetail />} />
-        <Route exact path="/search/:searchTerm" element={<SearchPage />} />
-      </Routes>
+      <div className="main">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route exact path="/popular-movies" element={<PopularMovie />} />
+          <Route exact path="/popular-tv" element={<PopularTv />} />
+          <Route exact path="/popular-people" element={<PopularPeople />} />
+          <Route exact path="/top-movies" element={<TopRatedMovie />} />
+          <Route exact path="/top-tv" element={<TopRatedTv />} />
+          <Route exact path="/upcoming-movies" element={<Upcoming />} />
+          <Route exact path="/movie/:movieId" element={<MovieDetail />} />
+          <Route exact path="/tv/:tvId" element={<TvShowDetail />} />
+          <Route exact path="/person/:personId" element={<CelebrityDetail />} />
+          <Route exact path="/search/:searchTerm" element={<SearchPage />} />
+        </Routes>
+      </div>
       <Footer />
     </Router>
   );

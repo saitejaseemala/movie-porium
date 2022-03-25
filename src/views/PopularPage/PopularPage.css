@@ -4,6 +4,11 @@
   margin-top: 2rem;
 }
 
+.popular .left-dir,
+.popular .right-dir {
+  display: none !important;
+}
+
 .popular .row-section {
   display: grid;
   grid-template-columns: repeat(5, 15vw);

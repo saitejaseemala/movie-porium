@@ -1,3 +1,8 @@
+.upcoming .left-dir,
+.upcoming .right-dir {
+  display: none !important;
+}
+
 .upcoming-movie-section {
   width: 100vw;
   margin-top: 2rem;

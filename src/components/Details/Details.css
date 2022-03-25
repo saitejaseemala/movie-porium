@@ -211,6 +211,15 @@
   .overview {
     text-align: center;
     padding-left: 0;
+    font-size: 15px;
+  }
+
+  .known-as {
+    font-size: 15px;
+  }
+
+  .birth-place {
+    font-size: 15px;
   }
 
   .poster-image {
@@ -224,7 +233,7 @@
 
   .genres h3 {
     text-align: center;
-    font-size: 1em;
+    font-size: 16px;
     display: block !important;
     margin-bottom: 5px;
   }
@@ -238,7 +247,7 @@
   .title {
     padding-top: 2.5em;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 24px;
   }
 
   .back-btn {
@@ -261,5 +270,10 @@
   .biography,
   .overview {
     padding-top: 10px;
+    font-size: 15px;
+  }
+
+  .birth-place {
+    font-size: 15px;
   }
 }

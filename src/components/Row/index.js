@@ -4,12 +4,37 @@ import { Box } from "@mui/material";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./Row.css";
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
+import { useState, useRef } from "react";
 
 function Row(props) {
+  const rowRef = useRef();
+  const scrollEventLeft = (e) => {
+    if (rowRef.current.scrollLeft - 230 > 0) {
+      rowRef.current.scrollLeft -= 230;
+    } else {
+      rowRef.current.scrollLeft -= 230;
+    }
+    rowRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const scrollEventRight = (e) => {
+    if (
+      rowRef.current.scrollLeft + 230 <=
+      rowRef.current.scrollWidth - rowRef.current.clientWidth
+    ) {
+      rowRef.current.scrollLeft += 230;
+    } else {
+      rowRef.current.scrollLeft += 230;
+    }
+    rowRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   const baseImageUrl = "https://image.tmdb.org/t/p/original";
   return props.shows ? (
     <div className="row">
-      <div className="row-section">
+      <ChevronLeft className={`left-dir`} onClick={scrollEventLeft} />
+      <div className="row-section" ref={rowRef}>
         {props.shows &&
           props.shows.map((show, index) => {
             return (
@@ -72,6 +97,7 @@ function Row(props) {
             );
           })}
       </div>
+      <ChevronRight className={`right-dir`} onClick={scrollEventRight} />
     </div>
   ) : (
     <h3>No Results Found</h3>
