@@ -16,7 +16,7 @@ function Footer() {
                 className="footer-logo"
               />
             </Link>
-            <p className="copy-p">Copyright &copy; 2022</p>
+            <p className="copy-p">Copyright &copy; 2024</p>
           </div>
           <nav className="footer-nav">
             <ul>
@@ -32,19 +32,19 @@ function Footer() {
             </ul>
           </nav>
           <div className="social">
-            <a href="https://github.com/saitejaseemala" target="_blank">
+            <a href="/" target="_blank">
               <GitHub fontSize="large" />
             </a>
             <a
-              href="https://www.linkedin.com/in/saiteja-seemala"
+              href="/"
               target="_blank"
             >
               <LinkedIn fontSize="large" />
             </a>
-            <a href="https://www.instagram.com/s_.a_.i_/?hl=en" target="_blank">
+            <a href="/" target="_blank">
               <Instagram fontSize="large" />
             </a>
-            <a href="https://twitter.com/SaitejaSeemala" target="_blank">
+            <a href="/" target="_blank">
               <Twitter fontSize="large" />
             </a>
           </div>
